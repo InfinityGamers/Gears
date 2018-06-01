@@ -23,7 +23,7 @@ class Spider extends Kit{
          *
          */
         public function __construct(Item $specialItem, array $items = [], int $coolDown, int $deactivate = -1){
-                parent::__construct("Araneidae", $specialItem, $items, Kit::RIGHT_CLICK_MODE, $coolDown, $deactivate);
+                parent::__construct("Spider", $specialItem, $items, Kit::RIGHT_CLICK_MODE, $coolDown, $deactivate);
         }
 
         /**
