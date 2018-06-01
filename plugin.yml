@@ -1,0 +1,10 @@
+name: Gears
+version: 1.1
+main: Gears\Gears
+author: xBeastMode
+description: "Tired of same old boring kits? try this"
+api:
+- 3.0.0-ALPHA10
+- 3.0.0-ALPHA11
+- 3.0.0-ALPHA12
+load: STARTUP
