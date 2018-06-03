@@ -112,7 +112,7 @@ effects:
     + Year = `y`
     + Week = `w`
     + Day = `d`
-    + Month = `no`
+    + Month = `mo`
     + Hour = `h`
     + Minute = `m`
     + Second = `s`

@@ -5,7 +5,6 @@ use pocketmine\math\AxisAlignedBB;
 use pocketmine\nbt\tag\CompoundTag;
 use pocketmine\network\mcpe\protocol\LevelSoundEventPacket;
 use pocketmine\Player;
-
 class Magneto extends Kit{
         /**
          *

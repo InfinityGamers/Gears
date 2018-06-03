@@ -138,7 +138,7 @@ class Gears extends PluginBase{
                             "strength:1:30"
                         ]
                     ],
-                    'Scorpio' => [
+                    'ScorpioTask' => [
                         'ability_item' => '399:0:1:&eScorpio &a| Right click this to use ability',
                         'cooldown' => '15s',
                         'deactivate_time' => '5s',
@@ -254,7 +254,7 @@ class Gears extends PluginBase{
                 }
 
 
-                $kit = $this->parseKitData('Scorpio');
+                $kit = $this->parseKitData('ScorpioTask');
                 if($kit !== null){
                         $kits[] = new Scorpio($kit[0], $kit[1], $kit[2], $kit[3]);
                 }

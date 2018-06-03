@@ -1,6 +1,6 @@
 <?php
 namespace Gears\Kit;
-use Gears\Gears;
+use Gears\Task\ScorpioTask;
 use pocketmine\entity\Entity;
 use pocketmine\nbt\tag\ByteTag;
 use pocketmine\nbt\tag\CompoundTag;
@@ -12,8 +12,6 @@ use pocketmine\nbt\tag\StringTag;
 use pocketmine\network\mcpe\protocol\LevelSoundEventPacket;
 use pocketmine\item\Item;
 use pocketmine\Player;
-use pocketmine\scheduler\PluginTask;
-
 class Scorpio extends Kit{
 
         /**
@@ -27,7 +25,7 @@ class Scorpio extends Kit{
          *
          */
         public function __construct(Item $specialItem, array $items = [], int $coolDown, int $deactivate = -1){
-                parent::__construct("Scorpio", $specialItem, $items, Kit::RIGHT_CLICK_MODE, $coolDown, $deactivate);
+                parent::__construct("ScorpioTask", $specialItem, $items, Kit::RIGHT_CLICK_MODE, $coolDown, $deactivate);
         }
 
         /**
@@ -108,29 +106,5 @@ class Scorpio extends Kit{
                         }
                 }
                 return false;
-        }
-}
-
-class ScorpioTask extends PluginTask{
-
-        protected $seconds = 15;
-        /** @var Entity */
-        protected $entity;
-
-        public function __construct(Gears $core, Entity $entity, int $seconds){
-                parent::__construct($core);
-                $this->entity = $entity;
-                $this->seconds = $seconds;
-        }
-
-        public function onRun(int $currentTick){
-
-                if($this->seconds <= 0){
-                        $this->getOwner()->getServer()->getScheduler()->cancelTask($this->getTaskId());
-                        $this->entity->close();
-                        return;
-                }
-
-                --$this->seconds;
         }
 }
