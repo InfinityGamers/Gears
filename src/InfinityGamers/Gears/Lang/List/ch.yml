@@ -1,11 +1,11 @@
 ---
-successfully_reset: '&eKit has been reset!'
-can_use_again: "&6> You may use your ability again! <"
-time_till_next_use: "&6> Time till next use: &7@seconds seconds &6<"
-already_enabled: '&cYou already have a kit enabled.'
-empty_inventory_first: '&4Please empty all your armor and items before acquiring a kit.'
-unknown_kit: '&cError: Kit not found.'
-equipped_kit: '&eKit has been equipped!'
-unknown_error: '&cError: an unknown error occurred.'
-not_unlocked: '&eSorry, you do not seem to have this special kit unlocked.\n&aUnlock some at &dhttps://example.com/shop &afor the low!'
+successfully_reset: '&e套件已被重设!' #translation "kit"(套件) may incorrect
+can_use_again: "&6> 您可以再用你的能力多一次了! <"
+time_till_next_use: "&6> 请等 &7@seconds秒钟 后在使用 &6<" #replaced "Time till next use: &7@seconds seconds" to "Please wait <second> to use"
+already_enabled: '&c您已经有了一个套件.'
+empty_inventory_first: '&4请您先解下您的盔甲在领取您的套件.'
+unknown_kit: '&c错误: 找不到套件.'
+equipped_kit: '&e穿上了套件!' #translation of "Kit has been equipped" might not be fully correct
+unknown_error: '&c错误: 出现未知错误.'
+not_unlocked: '&e对不起,您没有将这个特别的套件开锁.\n&a开锁在&dhttps://example.com/shop &a为低!' #翻译可能不对请别用这个 translation might not be correct, advise not using this
 ...
