@@ -1,0 +1,11 @@
+---
+successfully_reset: '&eTu kit ha sido reiniciado!'
+can_use_again: "&6> ¡Ya puedes utilizar tu habilidad de nuevo! <"
+time_till_next_use: "&6> Tiempo para volver a utilizar: &7@seconds segundos &6<"
+already_enabled: '&cYa tienes un kit puesto.'
+empty_inventory_first: '&4Por favor, vacea todo tu inventario para obtener este kit.'
+unknown_kit: '&cError: Kit no encontrado.'
+equipped_kit: '&eTu kit ha sido equipado!'
+unknown_error: '&cError: ocurrio un error desconocido.'
+not_unlocked: '&pPerdon, pero no tienes este kit desbloqueado.\n&Desbloquealo en &dhttps://exemplo.com/tienda &apor un precio bajo!'
+...

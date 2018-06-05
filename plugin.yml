@@ -1,7 +1,7 @@
 name: Gears
-version: 1.1-beta
-main: Gears\Gears
-author: xBeastMode
+version: 1.2-beta
+main: InfinityGamers\Gears\Gears
+author: InfinityGamers
 description: "Tired of same old boring kits? try this"
 api:
 - 3.0.0-ALPHA10

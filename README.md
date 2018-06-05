@@ -125,10 +125,10 @@ effects:
 
 ### Create Your Own Kits:
 
-First create a class which extends the `Gears\Kit\Kit` class:
+First create a class which extends the `InfinityGamers\Gears\Kit\Kit` class:
 ```php
 namespace mykitsplugin;
-use Gears\Kit\Kit;
+use InfinityGamers\Gears\Kit\Kit;
 class MyCustomKit extends Kit{
 }
 ```
@@ -137,7 +137,7 @@ in the class constructor call the parent constructor with your kit configuration
 ```php
 namespace mykitsplugin;
 use pocketmine\item\Item;
-use Gears\Kit\Kit;
+use InfinityGamers\Gears\Kit\Kit;
 class RandomTeleportKit extends Kit{
         public function __construct(){
             $kitName = "RandomTeleportKit";
@@ -157,7 +157,7 @@ Now add the `onUseSpecialItem` function:
 ```php
 namespace mykitsplugin;
 use pocketmine\item\Item;
-use Gears\Kit\Kit;
+use InfinityGamers\Gears\Kit\Kit;
 class RandomTeleportKit extends Kit{
         public function __construct(){
             $kitName = "RandomTeleportKit";
@@ -187,6 +187,7 @@ use pocketmine\item\Item;
 use pocketmine\math\Vector3;
 use pocketmine\nbt\tag\CompoundTag;
 use pocketmine\Player;
+use InfinityGamers\Gears\Kit\Kit;
 class RandomTeleportKit extends Kit{
         public function __construct(){
                 $kitName = "RandomTeleportKit";
@@ -242,6 +243,7 @@ if($plugin !== null){
 ```
 
 You can also optionally add the following functions to your custom kit: 
-+ `onQuit()` called when player quits the server.
-+ `onDeath()` called when player dies.
++ `onLoad()` called when player loads the kit. 
 + `onUnload()` called when player unloads the kit. 
++ `onDeath()` called when player dies.
++ `onQuit()` called when player quits the server.

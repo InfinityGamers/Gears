@@ -1,6 +1,6 @@
 <?php
 
-use Gears\Kit\Kit;
+use InfinityGamers\Gears\Kit\Kit;
 use pocketmine\item\Item;
 use pocketmine\math\Vector3;
 use pocketmine\nbt\tag\CompoundTag;

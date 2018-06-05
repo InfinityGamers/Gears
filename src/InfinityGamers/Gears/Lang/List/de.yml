@@ -1,0 +1,11 @@
+---
+successfully_reset: '&eKit has been reset!'
+can_use_again: "&6> You may use your ability again! <"
+time_till_next_use: "&6> Time till next use: &7@seconds seconds &6<"
+already_enabled: '&cYou already have a kit enabled.'
+empty_inventory_first: '&4Please empty all your armor and items before acquiring a kit.'
+unknown_kit: '&cError: Kit not found.'
+equipped_kit: '&eKit has been equipped!'
+unknown_error: '&cError: an unknown error occurred.'
+not_unlocked: '&eSorry, you do not seem to have this special kit unlocked.\n&aUnlock some at &dhttps://example.com/shop &afor the low!'
+...

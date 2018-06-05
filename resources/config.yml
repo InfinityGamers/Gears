@@ -1,0 +1,5 @@
+---
+# Language in which messages are displayed. Available languages:
+# en (English), es (Spanish)
+language: en
+...
