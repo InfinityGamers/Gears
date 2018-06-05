@@ -1,0 +1,11 @@
+---
+successfully_reset: '&eKit byl vyresetován!'
+can_use_again: "&6> Můžes znovu použít svou schopnost! <"
+time_till_next_use: "&6> Čas do dalšího použití: &7@seconds sekund &6<"
+already_enabled: '&cJiž sis vybral kit.'
+empty_inventory_first: '&4Prosím sundej si všechno brněni před vybráním kitu.'
+unknown_kit: '&cError: Kit nebyl nalezen.'
+equipped_kit: '&eKit byl vybrán!'
+unknown_error: '&cError: Neznámý error.'
+not_unlocked: '&ePromiň, tento kit nemáš odemčený.\n&aOdemkni nějáké na &dhttps://example.com/shop &apro aktivaci!'
+...
