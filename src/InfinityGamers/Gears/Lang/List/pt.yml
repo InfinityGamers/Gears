@@ -1,0 +1,11 @@
+---
+successfully_reset: '&eKit resetado!'
+can_use_again: "&6> Você pode usar sua habilidade novamente! <"
+time_till_next_use: "&6> Tempo até o próximo uso: &7@seconds segundos &6<"
+already_enabled: '&cVocê já tem um kit ativado.'
+empty_inventory_first: '&4Por favor, esvazie todas as suas armaduras e itens antes de adquirir um kit.'
+unknown_kit: '&cErro: Kit não foi encontrado.'
+equipped_kit: '&eKit foi equipado!'
+unknown_error: '&cErro: ocorreu um erro desconhecido.'
+not_unlocked: '&eDesculpe, você não parece ter este kit especial desbloqueado.\n&aObtenha alguns em &dhttps://example.com/shop &acom preços baixos!'
+...
