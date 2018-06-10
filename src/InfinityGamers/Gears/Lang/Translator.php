@@ -41,6 +41,9 @@ class Translator{
                         }
                         self::$messages = yaml_parse_file($fileCopy);
                         return;
+                }elseif(file_exists($fileCopy = (self::$languagePath . $lang . '.yml'))){
+                        self::$messages = yaml_parse_file($fileCopy);
+                        return;
                 }
                 throw new UnknownLangException("Language file not found.");
         }
