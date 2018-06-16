@@ -1,11 +1,11 @@
 ---
-successfully_reset: '&eKit has been reset!'
-can_use_again: "&6> You may use your ability again! <"
-time_till_next_use: "&6> Time till next use: &7@seconds seconds &6<"
-already_enabled: '&cYou already have a kit enabled.'
-empty_inventory_first: '&4Please empty all your armor and items before acquiring a kit.'
-unknown_kit: '&cError: Kit not found.'
-equipped_kit: '&eKit has been equipped!'
-unknown_error: '&cError: an unknown error occurred.'
-not_unlocked: '&eSorry, you do not seem to have this special kit unlocked.\n&aUnlock some at &dhttps://example.com/shop &afor the low!'
+successfully_reset: '&eIl kit è stato ripristinato!'
+can_use_again: "&6> Puoi usare di nuovo la tua abilità! <"
+time_till_next_use: "&6> Tempo fino al prossimo utilizzo: &7@seconds secondi &6<"
+already_enabled: '&cHai già un kit abilitato.'
+empty_inventory_first: '&4Si prega di svuotare tutte le armature e gli oggetti prima di acquistare un kit.'
+unknown_kit: '&cErrore: Kit non trovato.'
+equipped_kit: '&eIl kit è stato equipaggiato!'
+unknown_error: '&cErrore: si è verificato un errore sconosciuto.'
+not_unlocked: '&eScusa, non sembra che questo kit speciale sia sbloccato.\n&aSblocca alcuni a &dhttps://example.com/shop &acon prezzi bassi!'
 ...
