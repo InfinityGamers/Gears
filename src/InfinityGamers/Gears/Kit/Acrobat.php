@@ -42,7 +42,7 @@ class Acrobat extends Kit{
                         if(strtolower($data->getString("kit_name")) === "acrobat"){
                                 if($this->checkCoolDown($player)){
 
-                                        $this->getGearsInstance()->getServer()->getScheduler()->scheduleRepeatingTask(
+                                        $this->getGearsInstance()->getScheduler()->scheduleRepeatingTask(
                                             new AcrobatTask($this->getGearsInstance(), $player, $player->asPosition(), $this->coolDown), 20);
 
                                         $motion = $player->getDirectionVector();

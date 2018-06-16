@@ -4,17 +4,18 @@ namespace InfinityGamers\Gears\Task;
 
 use InfinityGamers\Gears\Gears;
 use pocketmine\Player;
-use pocketmine\scheduler\PluginTask;
+use pocketmine\scheduler\Task;
 
-class BerserkerTask extends PluginTask{
+class BerserkerTask extends Task{
 
         protected $seconds = 15;
-
+        /** @var Gears */
+        protected $core;
         /** @var Player */
         protected $player;
 
         public function __construct(Gears $core, Player $player, int $seconds){
-                parent::__construct($core);
+                $this->core = $core;
                 $this->player = $player;
                 $this->seconds = $seconds;
         }
@@ -22,7 +23,7 @@ class BerserkerTask extends PluginTask{
         public function onRun(int $currentTick){
                 if($this->seconds <= 0){
                         $this->player->setScale(1);
-                        $this->getOwner()->getServer()->getScheduler()->cancelTask($this->getTaskId());
+                        $this->core->getScheduler()->cancelTask($this->getTaskId());
                         return;
                 }
                 --$this->seconds;

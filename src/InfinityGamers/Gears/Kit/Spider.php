@@ -66,7 +66,7 @@ class Spider extends Kit{
                                                         $p->getLevel()->setBlock($p->add($x, 1, $z), Block::get(Block::COBWEB));
                                                 }
                                         }
-                                        $player->getServer()->getScheduler()->scheduleRepeatingTask(new SpiderTask($this->getGearsInstance(), $player, $p->level, $blocks, $this->deactivate), 20);
+                                        $this->getGearsInstance()->getScheduler()->scheduleRepeatingTask(new SpiderTask($this->getGearsInstance(), $player, $p->level, $blocks, $this->deactivate), 20);
 
                                         return true;
                                 }

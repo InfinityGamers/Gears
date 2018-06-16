@@ -4,19 +4,21 @@ namespace InfinityGamers\Gears\Task;
 use InfinityGamers\Gears\Gears;
 use pocketmine\block\Block;
 use pocketmine\level\Level;
-use pocketmine\scheduler\PluginTask;
+use pocketmine\scheduler\Task;
 
-class ThorTask extends PluginTask{
+class ThorTask extends Task{
 
         protected $seconds = 15;
 
+        /** @var Gears */
+        protected $core;
         /** @var Level */
         protected $level;
         /** @var Block[] */
         protected $blocks = [];
 
         public function __construct(Gears $core, Level $level, array $blocks, int $seconds){
-                parent::__construct($core);
+                $this->core = $core;
                 $this->level = $level;
                 $this->blocks = $blocks;
                 $this->seconds = $seconds;
@@ -25,7 +27,7 @@ class ThorTask extends PluginTask{
         public function onRun(int $currentTick){
 
                 if(count($this->blocks) <= 0){
-                        $this->getOwner()->getServer()->getScheduler()->cancelTask($this->getTaskId());
+                        $this->core->getScheduler()->cancelTask($this->getTaskId());
                         return;
                 }
 

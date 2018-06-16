@@ -5,9 +5,9 @@ namespace InfinityGamers\Gears\Task;
 use InfinityGamers\Gears\Gears;
 use pocketmine\level\Position;
 use pocketmine\Player;
-use pocketmine\scheduler\PluginTask;
+use pocketmine\scheduler\Task;
 
-class AcrobatTask extends PluginTask{
+class AcrobatTask extends Task{
 
         /** @var Gears */
         protected $core;
@@ -32,7 +32,6 @@ class AcrobatTask extends PluginTask{
          *
          */
         public function __construct(Gears $owner, Player $player, Position $usedAt, int $coolDown){
-                parent::__construct($owner);
                 $this->core = $owner;
                 $this->player = $player;
                 $this->usedAt = $usedAt;
@@ -47,7 +46,7 @@ class AcrobatTask extends PluginTask{
         public function onRun(int $currentTick){
 
                 if($this->coolDown <= 0 || !$this->core->getStorage()->isKitEnabled($this->player) || !$this->player->isOnline()){
-                        $this->core->getServer()->getScheduler()->cancelTask($this->getTaskId());
+                        $this->core->getScheduler()->cancelTask($this->getTaskId());
                         return;
                 }
 

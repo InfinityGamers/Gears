@@ -47,7 +47,7 @@ class Berserker extends Kit{
                                 if($this->checkCoolDown($player)){
                                         $player->setScale(2);
                                         $player->level->broadcastLevelSoundEvent($player, LevelSoundEventPacket::SOUND_GROWL);
-                                        $player->getServer()->getScheduler()->scheduleRepeatingTask(new BerserkerTask($this->getGearsInstance(), $player, $this->deactivate), 20);
+                                        $this->getGearsInstance()->getScheduler()->scheduleRepeatingTask(new BerserkerTask($this->getGearsInstance(), $player, $this->deactivate), 20);
                                 }
                         }
                 }

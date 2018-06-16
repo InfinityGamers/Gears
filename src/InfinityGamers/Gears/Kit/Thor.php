@@ -79,7 +79,7 @@ class Thor extends Kit{
                                                 }
                                         }
 
-                                        $player->getServer()->getScheduler()->scheduleRepeatingTask(new ThorTask($this->getGearsInstance(), $p->level, $blocks, $this->deactivate), 20);
+                                        $this->getGearsInstance()->getScheduler()->scheduleRepeatingTask(new ThorTask($this->getGearsInstance(), $p->level, $blocks, $this->deactivate), 20);
 
                                         return true;
                                 }

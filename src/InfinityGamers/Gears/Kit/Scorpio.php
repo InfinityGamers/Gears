@@ -99,7 +99,7 @@ class Scorpio extends Kit{
                                 if($this->checkCoolDown($player)){
                                         $ent = $this->launchItem($player, $item);
 
-                                        $player->getServer()->getScheduler()->scheduleRepeatingTask(new ScorpioTask($this->gears, $ent, $this->deactivate), 20);
+                                        $this->getGearsInstance()->getScheduler()->scheduleRepeatingTask(new ScorpioTask($this->gears, $ent, $this->deactivate), 20);
                                         $player->level->broadcastLevelSoundEvent($player, LevelSoundEventPacket::SOUND_LAUNCH);
                                 }
 

@@ -4,7 +4,6 @@ use InfinityGamers\Gears\Gears;
 use InfinityGamers\Gears\Kit\Kit;
 use pocketmine\event\Cancellable;
 use pocketmine\Player;
-
 class PlayerUnloadKitEvent extends GearsEvent implements Cancellable{
         public static $handlerList = null;
 

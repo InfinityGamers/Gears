@@ -7,9 +7,9 @@ use InfinityGamers\Gears\Lang\Translator;
 use InfinityGamers\Gears\Utils\RandomUtils;
 use InfinityGamers\Gears\Kit\Kit;
 use pocketmine\Player;
-use pocketmine\scheduler\PluginTask;
+use pocketmine\scheduler\Task;
 
-class CoolDownResetTask extends PluginTask{
+class CoolDownResetTask extends Task{
 
         /** @var Gears */
         protected $core;
@@ -28,7 +28,6 @@ class CoolDownResetTask extends PluginTask{
          *
          */
         public function __construct(Gears $owner, Player $player, int $seconds){
-                parent::__construct($owner);
                 $this->core = $owner;
                 $this->player = $player;
                 $this->seconds = $seconds;
@@ -51,7 +50,7 @@ class CoolDownResetTask extends PluginTask{
                                 $kit->setAbilityActive(false);
                                 $this->core->getStorage()->setKit($this->player, $kit);
                         }
-                        $this->getOwner()->getServer()->getScheduler()->cancelTask($this->getTaskId());
+                        $this->core->getScheduler()->cancelTask($this->getTaskId());
                         $message = Translator::getMessage('can_use_again');
                         $this->player->sendPopup(RandomUtils::colorMessage($message));
                         return;
@@ -63,7 +62,7 @@ class CoolDownResetTask extends PluginTask{
                         $this->player->sendPopup(RandomUtils::colorMessage($message));
                         --$this->seconds;
                 }else{
-                        $this->core->getServer()->getScheduler()->cancelTask($this->getTaskId());
+                        $this->core->getScheduler()->cancelTask($this->getTaskId());
                 }
         }
 }

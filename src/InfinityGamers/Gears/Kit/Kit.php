@@ -173,7 +173,7 @@ abstract class Kit{
                         $this->gears->getStorage()->setKit($player, $kit);
                 }
                 $task = new CoolDownResetTask($this->gears, $player, $this->coolDown);
-                $this->gears->getServer()->getScheduler()->scheduleRepeatingTask($task, 20);
+                $this->gears->getScheduler()->scheduleRepeatingTask($task, 20);
 
                 return true;
         }

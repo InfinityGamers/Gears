@@ -5,12 +5,14 @@ use InfinityGamers\Gears\Gears;
 use pocketmine\block\Block;
 use pocketmine\level\Level;
 use pocketmine\Player;
-use pocketmine\scheduler\PluginTask;
+use pocketmine\scheduler\Task;
 
-class SpiderTask extends PluginTask{
+class SpiderTask extends Task{
 
         protected $seconds = 15;
 
+        /** @var Gears */
+        protected $core;
         /** @var Player */
         protected $player;
         /** @var Level */
@@ -19,7 +21,7 @@ class SpiderTask extends PluginTask{
         protected $blocks = [];
 
         public function __construct(Gears $core, Player $player, Level $level, array $blocks, int $seconds){
-                parent::__construct($core);
+                $this->core = $core;
                 $this->player = $player;
                 $this->level = $level;
                 $this->blocks = $blocks;
@@ -29,7 +31,7 @@ class SpiderTask extends PluginTask{
         public function onRun(int $currentTick){
 
                 if(count($this->blocks) <= 0){
-                        $this->getOwner()->getServer()->getScheduler()->cancelTask($this->getTaskId());
+                        $this->core->getScheduler()->cancelTask($this->getTaskId());
                         return;
                 }
 

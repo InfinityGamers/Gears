@@ -4,7 +4,5 @@ main: InfinityGamers\Gears\Gears
 author: InfinityGamers
 description: "Tired of same old boring kits? try this"
 api:
-- 3.0.0-ALPHA10
-- 3.0.0-ALPHA11
-- 3.0.0-ALPHA12
+- 3.0.0
 load: STARTUP

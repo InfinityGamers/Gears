@@ -3,16 +3,18 @@ namespace InfinityGamers\Gears\Task;
 
 use InfinityGamers\Gears\Gears;
 use pocketmine\entity\Entity;
-use pocketmine\scheduler\PluginTask;
+use pocketmine\scheduler\Task;
 
-class ScorpioTask extends PluginTask{
+class ScorpioTask extends Task{
 
         protected $seconds = 15;
+        /** @var Gears */
+        protected $core;
         /** @var Entity */
         protected $entity;
 
         public function __construct(Gears $core, Entity $entity, int $seconds){
-                parent::__construct($core);
+                $this->core = $core;
                 $this->entity = $entity;
                 $this->seconds = $seconds;
         }
@@ -20,7 +22,7 @@ class ScorpioTask extends PluginTask{
         public function onRun(int $currentTick){
 
                 if($this->seconds <= 0){
-                        $this->getOwner()->getServer()->getScheduler()->cancelTask($this->getTaskId());
+                        $this->core->getScheduler()->cancelTask($this->getTaskId());
                         $this->entity->close();
                         return;
                 }
