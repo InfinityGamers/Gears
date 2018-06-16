@@ -19,30 +19,15 @@ use pocketmine\item\Item;
 use InfinityGamers\Gears\Kit\{
     Acrobat, Bartender, Berserker, Iceman, Magneto, Scorpio, Spider, Swapper, Thor
 };
-use pocketmine\utils\TextFormat;
-
 class Gears extends PluginBase{
-
-        /** @var Gears */
-        private static $instance = null;
 
         /** @var Config */
         protected $kits;
 
-        /**
-         * @var KitManager
-         */
+        /** @var KitManager */
         public $kitManager;
-        /**
-         * @var Storage
-         */
+        /** @var Storage */
         public $vault;
-
-        public function onLoad(){
-                while(!self::$instance instanceof $this){
-                        self::$instance = $this;
-                }
-        }
 
         public function onEnable(){
                 $this->setUpDirectories();
@@ -61,7 +46,7 @@ class Gears extends PluginBase{
                 Translator::setLanguagePath($this->getLanguagePath());
                 Translator::selectLang($lang);
 
-                $this->getLogger()->notice(TextFormat::GREEN . "Selected language " . TextFormat::GOLD . $lang);
+                $this->getLogger()->notice("Selected language: " . $lang);
         }
 
         public function setUpDirectories(){

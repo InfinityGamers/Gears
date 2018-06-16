@@ -6,7 +6,6 @@ use InfinityGamers\Gears\Exception\UnknownClickModeException;
 use InfinityGamers\Gears\Gears;
 use InfinityGamers\Gears\Kit\Kit;
 use pocketmine\Player;
-
 class KitManager{
         /**
          * @var Kit[]
