@@ -83,22 +83,14 @@ class Scorpio extends Kit{
         public function onUseSpecialItem($data){
                 $player = $data['Player'];
                 $item = $data['Item'];
-
-
                 if(($player instanceof Player) and ($item instanceof Item)){
-
                         if(!$item->hasCustomBlockData()) return false;
-
                         /** @var CompoundTag $data */
                         $data = $item->getCustomBlockData();
-
                         if(!$data->hasTag("kit_name")) return false;
-
                         if(strtolower($data->getString("kit_name")) === "scorpio"){
-
                                 if($this->checkCoolDown($player)){
                                         $ent = $this->launchItem($player, $item);
-
                                         $this->getGearsInstance()->getScheduler()->scheduleRepeatingTask(new ScorpioTask($this->gears, $ent, $this->deactivate), 20);
                                         $player->level->broadcastLevelSoundEvent($player, LevelSoundEventPacket::SOUND_LAUNCH);
                                 }

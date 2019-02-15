@@ -59,55 +59,21 @@ class Gears extends PluginBase{
         }
 
         public function registerKits(){
-                $kits = [];
+                $kitClasses = [
+                    'Acrobat' => Acrobat::class,
+                    'Bartender' => Bartender::class,
+                    'Berserker' => Berserker::class,
+                    'Iceman' => Iceman::class,
+                    'Magneto' => Magneto::class,
+                    'Scorpio' => Scorpio::class,
+                    'Spider' => Spider::class,
+                    'Swapper' => Swapper::class,
+                    'Thor' => Thor::class
+                ];
 
-                $kit = $this->parseKitData('Acrobat');
-                if($kit !== null){
-                        $kits[] = new Acrobat($kit[0], $kit[1], $kit[2], $kit[3]);
+                foreach($kitClasses as $kitName => $kitClass){
+                        $this->getKitManager()->registerKit(new $kitClass(...$this->parseKitData($kitName)));
                 }
-
-                $kit = $this->parseKitData('Bartender');
-                if($kit !== null){
-                        $kits[] = new Bartender($kit[0], $kit[1], $kit[2], $kit[3]);
-                }
-
-                $kit = $this->parseKitData('Berserker');
-                if($kit !== null){
-                        $kits[] = new Berserker($kit[0], $kit[1], $kit[2], $kit[3]);
-                }
-
-                $kit = $this->parseKitData('Iceman');
-                if($kit !== null){
-                        $kits[] = new Iceman($kit[0], $kit[1], $kit[2], $kit[3]);
-                }
-
-                $kit = $this->parseKitData('Magneto');
-
-                if($kit !== null){
-                        $kits[] = new Magneto($kit[0], $kit[1], $kit[2], $kit[3]);
-                }
-
-                $kit = $this->parseKitData('Scorpio');
-                if($kit !== null){
-                        $kits[] = new Scorpio($kit[0], $kit[1], $kit[2], $kit[3]);
-                }
-
-                $kit = $this->parseKitData('Spider');
-                if($kit !== null){
-                        $kits[] = new Spider($kit[0], $kit[1], $kit[2], $kit[3]);
-                }
-
-                $kit = $this->parseKitData('Swapper');
-                if($kit !== null){
-                        $kits[] = new Swapper($kit[0], $kit[1], $kit[2], $kit[3]);
-                }
-
-                $kit = $this->parseKitData('Thor');
-                if($kit !== null){
-                        $kits[] = new Thor($kit[0], $kit[1], $kit[2], $kit[3]);
-                }
-
-                $this->getKitManager()->registerKits($kits);
         }
 
         /**
@@ -185,19 +151,14 @@ class Gears extends PluginBase{
          */
         public function runKitCommands(Player $player, string $kitName){
                 $kit = $this->kits->get($kitName);
-
                 if($kit !== false){
-
                         foreach($kit['commands'] as &$command){
                                 $command = str_replace(["@player", "@kit"],
                                     [$player->getName(), $kitName], $command);
                                 $command = RandomUtils::colorMessage($command);
                         }
-
                         $this->sendCommands($kit['commands']);
-
                 }
-
                 return null;
 
         }
@@ -212,17 +173,12 @@ class Gears extends PluginBase{
          */
         public function setKitEffects(Player $player, string $kitName){
                 $kit = $this->kits->get($kitName);
-
                 if($kit !== false){
-
                         $effects = $this->parseEffects($kit['effects']);
-
                         foreach($effects as $effect){
                                 $player->addEffect($effect);
                         }
-
                 }
-
                 return null;
 
         }
@@ -236,7 +192,6 @@ class Gears extends PluginBase{
          */
         public function parseKitData(string $kitName){
                 $kit = $this->kits->get($kitName);
-
                 if($kit !== false){
 
                         $items = array_merge($this->parseItemsWithEnchants([$kit['helmet'], $kit['chest'], $kit['legs'], $kit['boots']]), $this->parseItemsWithEnchants($kit['items']));
@@ -253,7 +208,6 @@ class Gears extends PluginBase{
                         return [$special, $items, $coolDown, $deactivate];
 
                 }
-
                 return null;
 
         }
@@ -266,7 +220,6 @@ class Gears extends PluginBase{
          *
          */
         public function parseKitDataRaw(array $kit){
-
                 $items = array_merge($this->parseItemsWithEnchants([$kit['helmet'], $kit['chest'], $kit['legs'], $kit['boots']]), $this->parseItemsWithEnchants($kit['items']));
                 /** @var \DateTime $coolDown */
                 $coolDown = exc::stringToTimestamp($kit['cooldown'])[0];
@@ -302,7 +255,6 @@ class Gears extends PluginBase{
          */
         public function parseEffects(array $effects){
                 $out = [];
-
                 foreach($effects as $effect){
                         if($effect instanceof EffectInstance){
                                 $out[] = $effect;
@@ -314,7 +266,6 @@ class Gears extends PluginBase{
                                 }
                         }
                 }
-
                 return $out;
         }
 
@@ -327,41 +278,30 @@ class Gears extends PluginBase{
          */
         public function parseItemsWithEnchants(array $items){
                 $out = [];
-
                 foreach($items as $key => $item){
                         if($item instanceof Item){
                                 $out[] = $item;
                         }else{
-
                                 $parts = explode(':', $item);
-
                                 $id = array_shift($parts);
                                 $meta = array_shift($parts);
                                 $amount = array_shift($parts);
                                 $name = array_shift($parts);
-
                                 $item = Item::fromString("$id:$meta");
-
                                 if(!($item->getId() === Item::AIR)){
-
                                         $item->setCount($amount);
-
                                         $parts = implode(":", $parts);
-
                                         foreach($this->parseEnchants([$parts]) as $enchant){
                                                 $item->addEnchantment($enchant);
                                         }
-
                                         if(strtolower($name) !== "default"){
                                                 $item->setCustomName(RandomUtils::colorMessage($name));
                                         }
-
                                         $out[] = $item;
                                 }
 
                         }
                 }
-
                 return $out;
         }
 
@@ -376,18 +316,14 @@ class Gears extends PluginBase{
         public function parseEnchants(array $enchants){
                 /** @var EnchantmentInstance[] $out */
                 $out = [];
-
                 $i = 1;
-
                 /** @var Enchantment $lastEnchantment */
                 $lastEnchantment = null;
-
                 foreach($enchants as $enchant){
                         if($enchant instanceof EnchantmentInstance){
                                 $out[] = $enchant;
                         }else{
                                 $parts = explode(':', $enchant);
-
                                 foreach($parts as $part){
                                         if(($i % 2) === 0){
                                                 if($lastEnchantment !== null){
@@ -400,7 +336,6 @@ class Gears extends PluginBase{
                                 }
                         }
                 }
-
                 return $out;
         }
 
@@ -419,7 +354,6 @@ class Gears extends PluginBase{
                     Item::IRON_HELMET,
                     Item::LEATHER_HELMET
                 ];
-
                 $chestplateIds = [
                     Item::CHAIN_CHESTPLATE,
                     Item::DIAMOND_CHESTPLATE,
@@ -427,7 +361,6 @@ class Gears extends PluginBase{
                     Item::IRON_CHESTPLATE,
                     Item::LEATHER_CHESTPLATE
                 ];
-
                 $leggingIds = [
                     Item::CHAIN_LEGGINGS,
                     Item::DIAMOND_LEGGINGS,
@@ -435,7 +368,6 @@ class Gears extends PluginBase{
                     Item::IRON_LEGGINGS,
                     Item::LEATHER_LEGGINGS
                 ];
-
                 $bootIds = [
                     Item::CHAIN_BOOTS,
                     Item::DIAMOND_BOOTS,
@@ -443,9 +375,7 @@ class Gears extends PluginBase{
                     Item::IRON_BOOTS,
                     Item::LEATHER_BOOTS
                 ];
-
                 $armor = [];
-
                 foreach($contents as $index => $content){
                         if(in_array($content->getId(), $helmetIds)){
                                 $armor[0] = $content;
@@ -461,7 +391,6 @@ class Gears extends PluginBase{
                                 unset($contents[$index]);
                         }
                 }
-
                 return $armor;
         }
 }

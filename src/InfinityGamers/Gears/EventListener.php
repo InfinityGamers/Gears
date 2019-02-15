@@ -1,7 +1,5 @@
 <?php
-
 namespace InfinityGamers\Gears;
-
 use InfinityGamers\Gears\Kit\Acrobat;
 use InfinityGamers\Gears\Kit\Berserker;
 use InfinityGamers\Gears\Kit\Kit;
@@ -16,9 +14,7 @@ use pocketmine\event\player\PlayerQuitEvent;
 use pocketmine\inventory\PlayerInventory;
 use pocketmine\level\sound\DoorSound;
 use pocketmine\Player;
-
 class EventListener implements Listener{
-
         /** @var Gears */
         protected $core;
 
@@ -30,7 +26,7 @@ class EventListener implements Listener{
          *
          */
         public function __construct(Gears $core){;
-                $this->core = $core;;
+                $this->core = $core;
         }
 
         /**
@@ -47,14 +43,11 @@ class EventListener implements Listener{
                         if($data->hasTag("scorpio")){
                                 $launcher = $data->getString("launcher");
                                 $thrower = $this->core->getServer()->getPlayerExact($launcher);
-
                                 if($thrower instanceof Player){
-
                                         if($player === $thrower){
                                                 $event->setCancelled();
                                                 return;
                                         }
-
                                         $player->teleport($thrower);
                                         $player->level->addSound(new DoorSound($player));
                                 }
@@ -81,9 +74,7 @@ class EventListener implements Listener{
          *
          */
         public function interact(PlayerInteractEvent $e){
-
                 $player = $e->getPlayer();
-
                 if($this->core->getStorage()->isKitEnabled($player)){
                         $this->core->getKitManager()->callEvent([
                             'Player' => $e->getPlayer(),
@@ -115,16 +106,13 @@ class EventListener implements Listener{
          *
          */
         public function damage(EntityDamageEvent $e){
-
                 $target = $e->getEntity();
-
                 if($target instanceof Player){
                         $kit = $this->core->getStorage()->getPlayerKit($target);
                         if($kit instanceof Acrobat && $kit->isAbilityActive() && $e->getCause() === EntityDamageEvent::CAUSE_FALL){
                                 $e->setCancelled();
                         }
                 }
-
                 if($e instanceof EntityDamageByEntityEvent){
                         $cause = $e->getDamager();
                         if($cause instanceof Player and $target instanceof Player){
@@ -135,9 +123,7 @@ class EventListener implements Listener{
                                             'Item' => $cause->getInventory()->getItemInHand()
                                         ],
                                             Kit::HIT_PLAYER_MODE);
-
                                         $ability = $this->core->getStorage()->getPlayerKit($cause);
-
                                         if($ability instanceof Berserker && $ability->isAbilityActive()){
                                                 $e->setBaseDamage($e->getBaseDamage() * 2);
                                         }
@@ -154,8 +140,9 @@ class EventListener implements Listener{
         public function death(PlayerDeathEvent $e){
                 $player = $e->getPlayer();
 
-                if($this->core->getKitManager()->unloadKit($player)){
+                if($this->core->getStorage()->isKitEnabled($player)){
                         $this->core->getStorage()->getPlayerKit($player)->onDeath($player);
+                        $this->core->getKitManager()->unloadKit($player);
                 }
         }
 

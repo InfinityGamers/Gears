@@ -30,21 +30,15 @@ class Acrobat extends Kit{
         public function onUseSpecialItem($data){
                 $player = $data['Player'];
                 $item = $data['Item'];
-
                 if(($player instanceof Player) and ($item instanceof Item)){
                         if(!$item->hasCustomBlockData()) return false;
-
                         /** @var CompoundTag $data */
                         $data = $item->getCustomBlockData();
-
                         if(!$data->hasTag("kit_name")) return false;
-
                         if(strtolower($data->getString("kit_name")) === "acrobat"){
                                 if($this->checkCoolDown($player)){
-
                                         $this->getGearsInstance()->getScheduler()->scheduleRepeatingTask(
                                             new AcrobatTask($this->getGearsInstance(), $player, $player->asPosition(), $this->coolDown), 20);
-
                                         $motion = $player->getDirectionVector();
                                         $motion->x = $motion->x * 2.5;
                                         $motion->y = 1.5;

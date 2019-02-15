@@ -73,7 +73,6 @@ class Iceman extends Kit{
                                 $block->getLevel()->setBlock($block, $block);
                                 unset($this->processedBlocks[$index]);
                         }
-
                         for($x = -1; $x <= 1; ++$x){
                                 for($z = -1; $z <= 1; ++$z){
                                         if($player->isSneaking()){
@@ -82,7 +81,6 @@ class Iceman extends Kit{
                                                         $player->getLevel()->setBlock($player->add($x, 1, $z), Block::get(Block::ICE));
                                                         continue;
                                                 }
-
                                                 if(($block = $player->level->getBlock($player->add($x, -1, $z))) instanceof Water){
                                                         $this->processedBlocks[] = $player->getLevel()->getBlock($player->add($x, -1, $z));
                                                         $player->getLevel()->setBlock($player->add($x, -1, $z), Block::get(Block::ICE));
@@ -94,7 +92,6 @@ class Iceman extends Kit{
                                                         $player->getLevel()->setBlock($player->add($x, -1, $z), Block::get(Block::ICE));
                                                         continue;
                                                 }
-
                                                 if(($block = $player->level->getBlock($player->add($x, -2, $z))) instanceof Water){
                                                         $this->processedBlocks[] = $player->getLevel()->getBlock($player->add($x, -2, $z));
                                                         $player->getLevel()->setBlock($player->add($x, -2, $z), Block::get(Block::ICE));

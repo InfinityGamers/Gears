@@ -31,32 +31,20 @@ class Swapper extends Kit{
                 $player = $data['Player'];
                 $item = $data['Item'];
 
-
                 if(($player instanceof Player) and ($item instanceof Item)){
-
                         if(!$item->hasCustomBlockData()) return false;
-                        
                         /** @var CompoundTag $data */
                         $data = $item->getCustomBlockData();
-                        
                         if(!$data->hasTag("kit_name")) return false;
-
                         if(strtolower($data->getString("kit_name")) === "swapper"){
-
                                 $entity = $this->getTargetEntity($player);
-
                                 if($entity instanceof Player){
-
                                         if($this->checkCoolDown($player)){
-
                                                 $playerPos = $player->getPosition();
-
                                                 $player->teleport($entity);
                                                 $entity->teleport($playerPos);
-
                                                 $player->level->broadcastLevelSoundEvent($player, LevelSoundEventPacket::SOUND_TELEPORT);
                                                 $player->level->broadcastLevelSoundEvent($entity, LevelSoundEventPacket::SOUND_TELEPORT);
-
                                                 return true;
                                         }
                                 }

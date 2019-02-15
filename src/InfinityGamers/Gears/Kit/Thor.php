@@ -37,15 +37,11 @@ class Thor extends Kit{
                 $player = $data['Player'];
                 $block = $data['Block'];
                 $item = $data['Item'];
-
                 if(($player instanceof Player) and ($item instanceof Item) and ($block instanceof Block)){
                         if(!$item->hasCustomBlockData()) return false;
-
                         /** @var CompoundTag $data */
                         $data = $item->getCustomBlockData();
-
                         if(!$data->hasTag("kit_name")) return false;
-
                         if(strtolower($data->getString("kit_name")) === "thor"){
                                 if($this->checkCoolDown($player)){
                                         $p = $player->getTargetBlock(100);
@@ -55,21 +51,16 @@ class Thor extends Kit{
                                         $light->metadata = array();
                                         $light->attributes = [];
                                         $light->position = $p;
-
                                         $p = $p->asPosition();
                                         $v3 = new Vector3($p->x, $p->y, $p->z);
-
                                         $player->level->broadcastLevelSoundEvent($v3, LevelSoundEventPacket::SOUND_THUNDER, 93);
                                         Server::getInstance()->broadcastPacket($player->getLevel()->getPlayers(), $light);
-
                                         foreach($player->getLevel()->getNearbyEntities(
                                             new AxisAlignedBB($p->x - 5, $p->y - 5, $p->z - 5, $p->x + 5, $p->y + 5, $p->z + 5), $player) as $ent){
                                                 $ent->setHealth($ent->getHealth() - 1);
                                                 $ent->setOnFire(15);
                                         }
-
                                         $blocks = [];
-
                                         for($x = -5; $x <= 5; ++$x){
                                                 for($z = -5; $z <= 5; ++$z){
                                                         $blocks[] = $p->getLevel()->getBlock($p->add($x, 0, $z));
@@ -78,9 +69,7 @@ class Thor extends Kit{
                                                         $p->getLevel()->setBlock($p->add($x, 1, $z), Block::get(Block::FIRE));
                                                 }
                                         }
-
                                         $this->getGearsInstance()->getScheduler()->scheduleRepeatingTask(new ThorTask($this->getGearsInstance(), $p->level, $blocks, $this->deactivate), 20);
-
                                         return true;
                                 }
                         }

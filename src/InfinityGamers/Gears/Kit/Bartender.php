@@ -32,29 +32,21 @@ class Bartender extends Kit{
                 $player = $data['Player'];
                 $target = $data['Target'];
                 $item = $data['Item'];
-
                 if(($player instanceof Player) and ($target instanceof Player) and ($item instanceof Item)){
                         if(!$item->hasCustomBlockData()) return false;
-
                         /** @var CompoundTag $data */
                         $data = $item->getCustomBlockData();
-
                         if(!$data->hasTag("kit_name")) return false;
-
                         if(strtolower($data->getString("kit_name")) === "bartender"){
                                 if($this->checkCoolDown($player)){
-
                                         $effect = (new EffectInstance(Effect::getEffect(Effect::NAUSEA)))->setAmplifier(50)->setDuration($this->deactivate);
                                         $target->addEffect($effect);
-
                                         $player->level->addSound(new FizzSound($target));
-
                                         return true;
                                 }
                         }
 
                 }
-
                 return false;
         }
 }

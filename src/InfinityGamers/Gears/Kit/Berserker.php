@@ -34,15 +34,11 @@ class Berserker extends Kit{
         public function onUseSpecialItem($data){
                 $player = $data['Player'];
                 $item = $data['Item'];
-
                 if(($player instanceof Player) and ($item instanceof Item)){
                         if(!$item->hasCustomBlockData()) return false;
-
                         /** @var CompoundTag $data */
                         $data = $item->getCustomBlockData();
-
                         if(!$data->hasTag("kit_name")) return false;
-
                         if(strtolower($data->getString("kit_name")) === "berserker"){
                                 if($this->checkCoolDown($player)){
                                         $player->setScale(2);

@@ -9,10 +9,9 @@ use pocketmine\math\AxisAlignedBB;
 use pocketmine\math\Vector3;
 use pocketmine\nbt\tag\CompoundTag;
 use pocketmine\nbt\tag\StringTag;
-use pocketmine\permission\DefaultPermissions;
 use pocketmine\permission\Permission;
+use pocketmine\permission\PermissionManager;
 use pocketmine\Player;
-
 abstract class Kit{
 
         const RIGHT_CLICK_MODE = 0x01;
@@ -70,7 +69,7 @@ abstract class Kit{
                 $this->deactivate = $deactivate;
 
                 $specialItem->setCustomBlockData(new CompoundTag("", [new StringTag("kit_name", $name)]));
-                DefaultPermissions::registerPermission(new Permission("gear." . strtolower($name), "", Permission::DEFAULT_OP));
+                PermissionManager::getInstance()->addPermission((new Permission($this->getPermissionNode(), "", Permission::DEFAULT_OP)));
         }
 
         /**

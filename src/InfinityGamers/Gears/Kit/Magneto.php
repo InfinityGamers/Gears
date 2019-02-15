@@ -30,31 +30,22 @@ class Magneto extends Kit{
         public function onUseSpecialItem($data){
                 $player = $data['Player'];
                 $item = $data['Item'];
-
                 if(($player instanceof Player) and ($item instanceof Item)){
                         if(!$item->hasCustomBlockData()) return false;
-
                         /** @var CompoundTag $data */
                         $data = $item->getCustomBlockData();
-
                         if(!$data->hasTag("kit_name")) return false;
-
                         if(strtolower($data->getString("kit_name")) === "magneto"){
                                 if($this->checkCoolDown($player)){
-
-                                        $p = $player;
-
-                                        $player->level->broadcastLevelSoundEvent($p, LevelSoundEventPacket::SOUND_SPLASH);
-
+                                        $player->level->broadcastLevelSoundEvent($player, LevelSoundEventPacket::SOUND_SPLASH);
                                         foreach($player->getLevel()->getNearbyEntities(
-                                            new AxisAlignedBB($p->x - 10, $p->y - 10, $p->z - 10, $p->x + 10, $p->y + 10, $p->z + 10), $player) as $ent){
+                                            new AxisAlignedBB($player->x - 10, $player->y - 10, $player->z - 10, $player->x + 10, $player->y + 10, $player->z + 10), $player) as $ent){
                                                 $ent->teleport($player);
                                                 $motion = $ent->getDirectionVector();
                                                 $motion->multiply(-2);
                                                 $motion->y = 1.5;
                                                 $ent->setMotion($motion);
                                         }
-
                                         return true;
                                 }
                         }
